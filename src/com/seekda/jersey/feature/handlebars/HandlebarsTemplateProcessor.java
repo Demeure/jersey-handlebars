@@ -40,7 +40,7 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 @Singleton
 final class HandlebarsTemplateProcessor extends AbstractTemplateProcessor<String> {
 
-	private List<Class<? extends Object>> defaultHandlers = null;
+	private List<Class<? extends Object>> defaultHelpers = null;
 	private String templateSuffix = "";
 
     private static String getSuffixFromConfig (final Configuration config) {
@@ -93,8 +93,8 @@ final class HandlebarsTemplateProcessor extends AbstractTemplateProcessor<String
     		handlebars = new Handlebars(loader);
     	}
 
-    	if (defaultHandlers != null && defaultHandlers.size() != 0) {
-    		for (Class cls : defaultHandlers) {
+    	if (defaultHelpers != null && defaultHelpers.size() != 0) {
+    		for (Class cls : defaultHelpers) {
     			handlebars.registerHelpers(cls);
     		}
     	}
@@ -109,20 +109,20 @@ final class HandlebarsTemplateProcessor extends AbstractTemplateProcessor<String
 
 	private void initFromConfig(final Configuration config) {
     	// Default Handlers
-        String defaultHandler = (String) config.getProperty(HandlebarsMvcFeature.DEFAULT_HANDLERS);
+        String defaultHelpers = (String) config.getProperty(HandlebarsMvcFeature.DEFAULT_HELPERS);
         try {
-        	if (defaultHandler != null) {
-        		String[] handlers = defaultHandler.split(",");
+        	if (defaultHelpers != null) {
+        		String[] helpers = defaultHelpers.split(",");
         		List<Class<? extends Object>> classes = new ArrayList<>();
 
-        		for (String handler : handlers) {
-            		classes.add(Class.forName(handler));
+        		for (String helper : helpers) {
+            		classes.add(Class.forName(helper));
         		}
 
-        		this.defaultHandlers = classes;
+        		this.defaultHelpers = classes;
         	}
         } catch (ClassNotFoundException ex) {
-        	System.err.println("Default handler class not found: " + ex.getMessage());
+        	System.err.println("Default helper class not found: " + ex.getMessage());
         }
 
         this.templateSuffix = "." + getSuffixFromConfig(config);

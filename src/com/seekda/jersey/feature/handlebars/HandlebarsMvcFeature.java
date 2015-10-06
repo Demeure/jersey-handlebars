@@ -55,7 +55,7 @@ public class HandlebarsMvcFeature implements Feature {
      * A comma-separated {@link String} property to define one or more classes which's static methods
      * will be injected as handlers into each template.
      */
-    public static final String DEFAULT_HANDLERS = "jersey.config.server.mvc.handlers" + SUFFIX;
+    public static final String DEFAULT_HELPERS = "jersey.config.server.mvc.helpers" + SUFFIX;
 
     @Override
     public boolean configure(final FeatureContext context) {

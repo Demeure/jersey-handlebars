@@ -6,8 +6,18 @@ View processor implementation for [Jersey](http://jersey.java.net/) to render [H
 
 ### Maven
 
-Ultimately, this repository should also be available from maven. Until we figure out how to publish it, you'll need to manually download and build this project :)
+Currently, this project is available in the first snapshot release on the central maven repository. Simply add the following
+lines to your `pom.xml`:
 
+```xml
+<dependency>
+	<groupId>com.seekda.jersey.feature.handlebars</groupId>
+	<artifactId>jersey-feature-handlebars</artifactId>
+	<version>0.1-SNAPSHOT</version>
+</dependency>
+```
+
+We will continue to do some testing to assure everything works as expected, then we will push the first release to the official repository.
 
 ## Initialization
 
